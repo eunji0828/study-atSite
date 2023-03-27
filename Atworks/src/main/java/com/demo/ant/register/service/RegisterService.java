@@ -14,5 +14,4 @@ public interface RegisterService {
 	int nickCheck(String userNick) throws Exception;
 
 
-R
 }
