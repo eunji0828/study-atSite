@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.ant.board.dao.BoardMapperDao">
+
+<!-- 게시판 리스트 -->
+<select id="boardSelect" resultType="hashMap" parameterType="hashMap">
+	SELECT 	
+			b.board_no as boardNo
+		  , b.board_title as boardTitle
+		  , u.user_no as userNo
+		  , u.user_nick as userNick
+		  , b.board_date as boardDate
+		  , b.board_hit as boardHit
+		  , b.board_like as boardLike
+    FROM 
+    	atworks_board b
+    INNER JOIN atworks_user u
+    ON b.user_no = u.user_no
+    ORDER BY b.board_no desc
+    LIMIT #{pageStart}, #{perPageNum}; 
+
+</select> 
+
+<!-- 게시물 수 구하기 -->
+<select id="countBoardList" resultType="integer">
+	SELECT count(*)
+	FROM	atworks_board;
+</select>
+
+<!-- 게시물 작성 -->
+<insert id="boardWrite">
+	INSERT INTO 
+				atworks_board
+				(
+				user_no
+			  , board_date
+			  , board_updateDate
+			  , board_title
+			  , board_content
+			  , board_hit
+			  , board_like
+			  , board_file_no
+			  , cmt_no
+				)
+		VALUES
+			(
+			  #{userNo}
+			, now()
+			, null
+			, #{boardTitle}
+			, #{boardContent}
+			, 0
+			, 0
+			, null
+			, null
+			);
+</insert>
+
+<!-- 게시판 디테일 페이지 -->
+<select id="boardDetaiSelect" resultType="hashMap">
+	SELECT 
+		b.board_no        as boardNo,
+		u.user_no		  as userNo,
+		b.board_title	  as boardTitle,
+		b.board_content	  as boardContent,
+		u.user_nick       as userNick,
+		b.board_file_no   as boardFileNo,
+		b.board_date      as boardDate,
+		b.board_hit 	  as boardHit,
+		b.cmt_no		  as cmtNo
+		FROM atworks_board b INNER JOIN atworks_user u
+		ON b.user_no = u.user_no
+		WHERE b.board_no = #{boardNo};
+</select>
+
+<!-- 게시글 수정 -->
+<update id="boardModify">
+	UPDATE atworks_board
+	SET 
+		board_title	  	 = #{boardTitle},
+		board_content 	 = #{boardContent},
+		board_updateDate = now();
+</update>
+
+<!-- 게시글 삭제 -->
+<delete id="boardDelete" parameterType="com.demo.ant.board.vo.BoardVO">
+	DELETE FROM 
+				atworks_board
+	WHERE board_no = #{boardNo};
+</delete>
+
+
+<!-- 조회수 증가 -->
+<update id="boardHit">
+	UPDATE	
+		atworks_board
+	SET
+		board_hit = board_hit + 1
+	WHERE 	
+		board_no = #{boardNo};
+</update>
+
+</mapper>

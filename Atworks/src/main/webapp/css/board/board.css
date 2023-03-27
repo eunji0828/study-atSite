@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.main{
+	border: 1px solid black;
+	height: 800px;
+}
+.container{
+	margin: 5%;
+	
+}
+
+
+.boardContainer{
+	margin-bottom : 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.boardContainer div:nth-child(1){
+	width: 50%;
+}
+
+.font{
+	text-align : center;
+	height: 40px;
+	border-bottom : 1px solid gray;
+}
+.font:hover{
+	background-color: azure;
+	cursor:pointer;
+}
+.boardList{
+	background-color: dimgray;
+	color: white;
+	height: 40px;
+}
+.titleWidth{
+	width: 55%;
+}
+.selectBox{
+	width: 15%;
+	text-align : center;
+	border-radius: 5px;
+	cursor: pointer;
+}
+#boardSearch{
+	width: 75%;
+	border-radius: 5px;
+}
+#searchBtn{
+	padding: 7px 10px;
+	border: 1px solid #DBDEE3;
+	cursor: pointer;
+	background-color: white;
+	border-radius: 5px;
+}
+#searchBtn:hover{
+	color:blue;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+#write{
+	border: 1px solid #DBDEE3;
+	border-radius: 5px;
+	background-color: white;
+	padding: 7px 10px;
+}
+#write:hover{
+	border: 1px solid black;
+	color: blue;
+	cursor: pointer;
+}
+
+.paginationContainer{
+	margin-top: 25px;
+	display: flex;
+	justify-content: center;
+}
+.pagination{
+	display: flex;
+	flex-direction: row;
+}
+.pagination li{
+	margin: 5px;
+}

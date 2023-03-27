@@ -1,0 +1,31 @@
+@charset "EUC-KR";
+
+/* 로그인 전체 감싸는 컨테이너 */
+.container{
+	padding: 10% 30%;
+}
+
+.btn_box{
+	display: flex;
+	justify-content: center;
+}
+
+/* 로그인 버튼 */
+.btn{
+	border: 1px solid #DBDEE3;
+	background-color: white;
+	cursor: pointer;
+	width: 65px;
+}
+.cancel_btn{
+	margin-left: 15px;
+}
+.login_btn:hover{
+	border: 1px solid blue;
+	color: blue;
+}
+.cancel_btn:hover{
+	border: 1px solid red;
+	color: red;
+}
+
